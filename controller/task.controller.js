@@ -1,11 +1,4 @@
-const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
-
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.oqixxng.mongodb.net/?retryWrites=true`;
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverApi: ServerApiVersion.v1,
-});
+const { client } = require("../dbconnect");
 
 const run = async () => {
   try {
@@ -34,7 +27,7 @@ const run = async () => {
     //get all tasks. it used for testing purpose
     module.exports.getAllTasks = async (req, res) => {
       let result;
-      // result = await taskCollection.find({}).toArray();
+      result = await taskCollection.find({}).toArray();
       if (result) {
         res.send(result);
       } else {
